@@ -8,6 +8,11 @@ const userRoute = require("./Routes/userRoutes");
 const adminRoute = require("./Routes/adminRoutes");
 const doctorRoute = require("./Routes/doctorRoutes");
 const path = require('path')
+const fileURLToPath = require('url')
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 mongoose.set("strictQuery", true);
 // dot env config
 dotenv.config();
@@ -31,9 +36,8 @@ app.get("/", (req, res) => {
 
 // static file
 app.use(express.static(path.join(__dirname,"./client/build")))
-app.get('*',function(req,res) {
-  res.sendFile(path.join(__dirname,'./client/build/index.html'))
-})
+//render client for any path
+app.get("*",(req,res)=>res.sendFile(path.join(__dirname,"./client/build/index.html")))
 const port = process.env.PORT || 8080;
 
 // listen port
