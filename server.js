@@ -25,9 +25,6 @@ app.use(moragan("dev"));
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/admin", adminRoute);
 app.use("/api/v1/doctor", doctorRoute);
-app.get("/", (req, res) => {
-  res.send(`<h1>App is running</h1>`);
-});
 
 
 // static file
